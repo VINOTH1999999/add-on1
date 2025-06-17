@@ -1,0 +1,53 @@
+day 2 (TASK)
+1)class Main {
+    public static void main(String[] args) {
+        String str = "morning";
+        String vowels = "";
+        String consonants = "";
+
+        for (int i = 0; i < str.length(); i++) {
+            char ch = str.charAt(i);
+            
+            if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u') {
+                vowels += ch;
+            } else {
+                consonants += ch;
+            }
+        }
+
+        System.out.println("Vowels: " + vowels);
+        System.out.println("Consonants: " + consonants);
+    }
+} 
+output: Vowels: oi
+Consonants: mrnng
+
+2)public class Main {
+    public static void main(String[] args) {
+        int[] arr = {10, 20, 30, 40, 50};
+        int n = arr.length;
+
+        for (int i = n - 1; i >= 0; i--) {
+            System.out.print(arr[i] + " ");
+        }
+    }
+}
+
+output:50 40 30 20 10 
+
+3)import java.util.Scanner;
+class Main {
+    public static void main(String[] args) {
+      String str="I Love Zoho";
+      String str1[]=str.split(" ");
+      System.out.println(str1[0]);
+      for(int i=str1.length-1;i>=0;i--)
+      {
+          System.out.print(str1[i]+" ");
+      }
+    }
+}
+
+Output:
+
+Zoho Love I
