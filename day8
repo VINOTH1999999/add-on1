@@ -1,0 +1,219 @@
+Sql:
+DATABASE:
+*Organised Collection of related information.
+
+Forms of Database:
+*Physical Form-is what we see(register)
+*Digital Form-datas are stored digitally stored in computers as 0s and 1s(PC)
+*Logical Form-datas are maitained in a database using a software(DBMS)
+
+DBMS disadvantages:
+*Data redundancy-unwanted duplications
+*Data Inconsistency-
+
+-----------------------------------------------------------
+
+RDBMS:
+*Data is stored in multiple relations(tables)
+*table is the base object in database.
+
+RDBMS Software:
+*MySQL-mostly used(open source)-database server
+*Oracle-Licensed
+*SQL Server-Licensed(Microsoft)
+*DB2
+*PostgreSQL-Licensed
+*SQLite-Licensed(used for local storage)
+
+------------------------------------------------------------------
+
+Environments which used to communicate with database:
+*CLI(Command Line Interface)
+*MySQL Work Bench
+*Other Apllications
+
+--------------------------------------------------------------------
+
+SQL:Structered Query Language
+*Used to communicate with the database.
+*SQL is different from MySQL.
+*5 languages in SQL:
+	*DDL:Data Definition Language-used to define an object in database
+	KEYWORDS:
+	*create
+	*alter
+	*truncate
+	*rename
+	*drop
+	
+	*DML:Data Manipulation Language-used to manipulate the data
+	KEYWORDS:
+	*insert
+	*update
+	*delete
+
+	*TCL:Transaction Control Language-used to control the transactions
+	KEYWORDS:
+	*commit
+	*rollback
+	*savepoint
+
+	*DCL:Data Control Language-used to control the data access
+	KEYWORDS:
+	*granted
+	*revoke
+
+	*DQL:Data Query Language-used to read data
+	KEYWORD:
+	*select
+
+------------------------------------------------------------------------------------------------------------
+
+Connection for mySQL:
+mysql -u root -p
+enter password:
+
+-------------------------------------
+
+Create database:
+create database databasename;
+
+--------------------------------------
+
+Create database table:
+Syntax:create table table_name(
+	column_1 datatype(size),
+	column_2 datatype(size),
+	.....
+	column_3 datatyp(size));
+
+-------------------------------------------
+
+DATATYPES:
+int: integer
+varchar:variable length string
+char: fixed length string
+date: 'yyyy-mm-dd'
+
+----------------------------------------------------
+
+Insert datas in table:
+Syntax:
+insert into table_name values(value1,value2,....);
+EX:
+insert into products values(1,'laptop','2025-06-10',45000);
+
+------------------------------------------------------------------
+
+READ THE DATA:
+select * from table_name;
+
+------------------------------------------------------------------
+
+NULL:undefined value
+
+-----------------------------------------------------------------
+
+Shortcut for null:
+insert into table_name(prodname,price) values('monitor',9000);
+
+-------------------------------------------------------------------
+
+Insert Multiple Rows:
+insert into table_name values(value1,value2,....),(value3,value4);
+
+--------------------------------------------------------------------
+
+MODIFY THE EXISTING VALUES:
+*using update keyword
+SYNTAX:
+update table_name set columnname='value'
+where condition;
+
+EX:
+update purchase set date_of_purchase='2025-03-20' where prodname='mouse';
+
+------------------------------------------------------------------------------------------------
+
+DELETE RECORDS:
+*using delete keyword
+SYNTAX:
+delete table_name set columnname='value' where condition;
+
+----------------------------------------------------------------------------
+
+ADD COLUMN:
+*using alter keyword
+SYNTAX:
+alter table table_name add column columnname;
+
+----------------------------------------------------------------------------
+
+DELETE COLUMN:
+*using drop keyword
+SYNTAX:
+alter table table_name drop column columnname;
+
+---------------------------------------------------------------------------
+
+RENAME COLUMN;
+*using rename
+SYNTAX:
+alter table table_name rename column old_name to new_name;
+
+-----------------------------------------------------------------------------
+
+INCREASE THE SIZE OR CHANGE THE DATATYPE:
+*using modify
+SYNTAX:
+alter table table_name modify columnname datatype(size);
+
+------------------------------------------------------------------------------
+
+DELETE ONLY RECORDS:
+*using truncate
+SYNTAX:
+truncate table table_name;
+
+-------------------------------------------------------------------------------------------------------
+DIFF BETWEEN DELETE AND TRUNCATE
+--------------------------------------------------------------------------------------------------------
+DELETE				|		TRUNCATE                     
+*remove one or more records		|		*remove all records       
+*it can be rolled back		|		*it can't be rolled back
+*it will not release space		|		*it will release space
+*logging will be done		|		*logging will not done 
+-----------------------------------------------------------------------------------------------------------
+
+RENAME TABLE:
+rename table old_name to new_name;
+
+-----------------------------------------------------------
+
+REMOVE A TABLE:
+drop table table_name;
+
+--------------------------------------
+
+Diff between drop and truncate:
+*truncate only removes records whereas drop removes all
+
+---------------------------------------------------------------------
+
+LIST TABLES:
+show tables;
+
+----------------------------------------------------------
+
+NAMING RULES:
+1)must start with an alphabet
+2)cannot contain space
+3)can contain numbers and special characters(_,$,#)
+4)must be unique
+
+-----------------------------------------------------------------------
+
+DESCRIBE THE TABLE:
+*using desc
+SYNTAX:
+desc table_name;
