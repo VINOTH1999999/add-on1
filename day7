@@ -1,0 +1,35 @@
+MethodOverride:
+*Two classes with same method.
+*it has a abstract method(data hide) void run().It is a inbuilt method
+*@Override-annotation.it have meta data.
+*.start()-start a thread to run simultaneously.
+*.start() is available only in Thread class.
+Thread tc1=new Thread(tc);
+		tc1.start();
+*void run() did not execute simultaneiusly.
+------------------------------------------------------------------------------------
+DeadLock:
+*methods of two process allocated alternatively.So it still in the running state and did not execute.
+-------------------------------------------------------------------------------------
+.sleep()
+*in waiting stage in given milliseconds
+try {
+			Thread.sleep(4000);  //milliseconds between output
+		}
+		catch(Exception e) {
+			e.printStackTrace(); // stores the value and print after the sleep
+		}
+
+------------------------------------------------------------------------------------------------------------------------
+.join()-entered only in main method.
+*used to hold the data or statement and print it at the end.
+*Should be wrapped with try catch block.
+
+try {
+			tc1.join();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		System.out.println("Program Completed");
+
+------------------------------------------------------------------------------------
