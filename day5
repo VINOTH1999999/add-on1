@@ -1,0 +1,120 @@
+Day5:
+
+Exception Handling:
+Exception:An Exception is an unwanted or unexpected event that occurs during the execution of a program
+Ex:10/0
+index out of bounds
+It is a mechanism or a concept used to capture runtime errors
+
+Types of errors:
+*Run time
+*Compile time
+--------------------------------------------------------------------------
+Types of Exception:
+*Checked Exception
+*Unchecked Exception
+*Error
+--------------------------------------------------------------------------
+Checked Exception:
+EX:
+*File not found exception
+*IO Exception
+*Class not found exception
+(can be handle)
+
+Unchecked Exception:
+*Null Pointer Exception
+*Arithmetic Exception
+*Index out of bounds Exception
+*Illegal argument Exception
+(can be handle)
+
+Error:
+*System out of memory Error
+*Sudden shutdown
+(can't be handled)
+----------------------------------------------------------------------
+Used For Exception handling:
+*Try
+*Catch
+*Finally
+*Throw
+*Throws
+
+Try:
+It contains the statements where an exception can occur
+---------------------------------------------------------------------
+Try & Catch Program:
+package oops.ExceptionHandling;
+
+class TryCatch {
+	public static void main(String[] args) {
+		try {
+		int a=10/5;
+		}
+		catch(ArithmeticException ae ) {
+			System.out.println("Error Occured "+ae);
+		}
+		System.out.println("Executed");
+	}
+}
+
+
+Output:
+Executed
+----------------------------------------------------------------------
+Throw & Throws:
+Throw					Throws
+*Throw inside the function body		*header of an method
+---------------------------------------------------------------------------
+Java Collections:
+Any group of individual objects that are represented as a single unit.
+It is a framework which provides set of classes and interface to store and manipulate groups or objects.
+interface in collection:
+*list:
+-Arraylist
+-LinkedList
+-Vector
+*set:
+-Hashset
+-LinkedHashset
+*queue:
+-PriorityQueue
+-ArrayQueue
+*map
+------------------------------------------------------------------------------------
+ArrayList:
+Keywords:
+*add(int index, Object element)-used to add elements.
+*set() used to replace  the elements
+*remove()-remove element
+*contains()-search whether the value is present or not
+*clear()-array will disappear
+*isEmpty()-Returns true if this list contains no elements.
+--------------------------------------------------------------------------------------
+Sample program:
+import java.util.*;
+public class ArrayListClass {
+	public static void main(String[] args) {
+		int arr[]=new int[15];
+		ArrayList<Integer> alist = new ArrayList<>(100);
+		//wrapper class
+		alist.add(10);
+		alist.add(20);
+		alist.add(30);
+		alist.add(2,40);
+		alist.set(3,50);
+		alist.remove(1);
+		System.out.println(alist.reversed());
+		System.out.println(alist.contains(100));
+		System.out.println(alist.size());
+		System.out.println(alist);
+	}
+
+}
+
+OUTPUT:
+[50, 40, 10]
+false
+3
+[10, 40, 50]
