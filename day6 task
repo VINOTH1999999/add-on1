@@ -1,0 +1,189 @@
+day 6 task
+import java.util.HashSet;
+
+import java.util.Scanner;
+
+
+
+public class UniqueEmailsFixed {
+
+    public static void main(String[] args) {
+
+        HashSet<String> emailSet = new HashSet<>();
+
+        Scanner sc = new Scanner(System.in);
+
+
+
+        System.out.print("How many email addresses you want to enter? ");
+
+        int count = sc.nextInt();
+
+        sc.nextLine();
+
+
+        for (int i = 0; i < count; i++) {
+
+            System.out.print("Enter email " + (i + 1) + ": ");
+
+            String email = sc.nextLine();
+
+
+
+            if (emailSet.add(email)) {
+
+                System.out.println("Email added.");
+
+            } else {
+
+                System.out.println("Duplicate email. Not added.");
+
+            }
+2)
+package coursepack;
+
+
+
+import java.util.HashMap;
+
+import java.util.Scanner;
+
+
+
+public class StudentMarksAverage {
+
+    public static void main(String[] args) {
+
+        HashMap<String, Integer> studentMarks = new HashMap<>();
+
+        Scanner sc = new Scanner(System.in);
+
+
+
+        System.out.print("Enter number of students: ");
+
+        int count = sc.nextInt();
+
+        sc.nextLine();
+
+
+        for (int i = 0; i < count; i++) {
+
+            System.out.print("Enter student name: ");
+
+            String name = sc.nextLine();
+
+
+
+            System.out.print("Enter marks for " + name + ": ");
+
+            int marks = sc.nextInt();
+
+            sc.nextLine(); // consume newline
+
+
+
+            studentMarks.put(name, marks);
+
+        }
+
+
+
+   
+
+        int total = 0;
+
+        for (int marks : studentMarks.values()) {
+
+            total += marks;
+
+        }
+
+
+
+        double average = (double) total / studentMarks.size();
+
+
+
+
+
+        System.out.println("\nStudent Marks:");
+
+        for (String name : studentMarks.keySet()) {
+
+            System.out.println(name + " -> " + studentMarks.get(name));
+
+        }
+
+
+
+        System.out.println("\nAverage Marks: " + average);
+
+
+
+        sc.close();
+
+    }
+
+}
+
+3)
+package coursepack;
+
+
+
+class MyThread extends Thread {
+
+    @Override
+
+    public void run() {
+
+        for (int i = 1; i <= 10; i++) {
+
+            System.out.println("Thread: " + i);
+
+        }
+
+    }
+
+}
+
+
+
+public class threadoh {
+
+    public static void main(String[] args) {
+
+        MyThread thread = new MyThread();
+
+        thread.start();
+
+    }
+
+}
+
+        }
+
+
+
+        System.out.println("\nUnique email addresses:");
+
+        for (String email : emailSet) {
+
+            System.out.println(email);
+
+        }
+
+
+
+        sc.close();
+
+    }
+
+
+
+
+
+
+
+}
