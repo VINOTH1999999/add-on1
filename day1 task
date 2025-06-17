@@ -1,0 +1,153 @@
+elseif condition using && operator
+public class Main
+{
+public static void main(String[] args) {
+int age=16;
+if(age>16)
+{
+       System.out.println("valid");
+}
+else if(age<16)
+{
+   System.out.print("invalid");
+}
+else
+{
+   System.out.println("Age is 16");
+}
+}
+}
+
+Output:
+Age is 16
+-------------------------
+public class Main
+{
+public static void main(String[] args) {
+int age=19;
+String gender="female";
+if(age>=21 && gender=="female")
+{
+       System.out.println("Eligible for female");
+}
+else if(age>=23 && gender=="male")
+{
+   System.out.print("Eligible for male");
+}
+else
+{
+   System.out.println("Not eligible");
+}
+}
+}
+
+Output:
+Not eligible
+--------------------------------------------------------------
+
+elseif condition using || operator
+public class Main
+{
+public static void main(String[] args) {
+int age=18;
+String gender="female";
+if(age>16 || gender=="female")
+{
+       System.out.println("Ticket is free");
+}
+else
+{
+   System.out.println("Ticket is not free");
+}
+}
+}
+
+Output:
+Ticket is free
+----------------------------------------------------------------------
+
+Using Switch Case:
+public class Main
+{
+public static void main(String[] args) {
+int age=18;
+String gender="male";
+if(age<18 || gender=="female")
+{
+       System.out.println("Ticket is free");
+}
+else
+{
+   int km=15;
+   switch(km){
+       case :{
+           System.out.println("Rupees 50");
+           break;
+       }
+       case 10:{
+           System.out.println("Rupees 100");
+           break;
+       }
+       default:{
+           System.out.println("Not Applicable");
+       }
+}
+}
+}
+}
+
+Output:
+Not Applicable
+------------------------------------------------------------
+
+Using do while
+public class Main
+{
+public static void main(String[] args) {
+   int i=5;
+   do
+   {
+       System.out.println(i);
+       i++;
+   }
+   while(i<5);
+}
+}
+
+Output:
+5
+
+------------------------------------------------------
+Methods:
+return type without static
+
+public class Main
+{
+    int myMethod(int a,int b)
+    {
+        return a+b;
+    }
+public static void main(String[] args) {
+  Main m=new Main();
+  System.out.print(m.myMethod(5,10));
+}
+}
+
+Output:
+15
+----------------------------
+with static
+public class Main
+{
+    static int myMethod(int a,int b)
+    {
+        return a+b;
+    }
+public static void main(String[] args) {
+
+  System.out.print(myMethod(5,10));
+}
+}
+
+Output
+55
