@@ -1,0 +1,47 @@
+import java.util.Scanner;
+
+class BankAccount {
+    double balance = 0;
+
+    void deposit(double amount) {
+        balance += amount;
+        System.out.println("Deposited: ₹" + amount);
+    }
+
+    void withdraw(double amount) {
+        if (amount <= balance) {
+            balance -= amount;
+            System.out.println("Withdrawn: ₹" + amount);
+        } else {
+            System.out.println("Not enough balance!");
+        }
+    }
+
+    void showBalance() {
+        System.out.println("Balance: ₹" + balance);
+    }
+}
+
+public class Bank {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        BankAccount account = new BankAccount();
+
+        System.out.print("Enter deposit amount: ");
+        double dep = sc.nextDouble();
+        account.deposit(dep);
+
+        System.out.print("Enter withdraw amount: ");
+        double wd = sc.nextDouble();
+        account.withdraw(wd);
+
+        account.showBalance();
+    }
+}
+
+OUTPUT:
+Enter deposit amount: 20000
+Deposited: ₹20000.0
+Enter withdraw amount: 500
+Withdrawn: ₹500.0
+Balance: ₹19500.0
