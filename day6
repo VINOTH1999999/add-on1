@@ -1,0 +1,34 @@
+Thread:
+*thread is a light weight process to allow the single process to run on core.
+*use to run multiple block of codes simultaneously.
+--------------------------------------------------------------------
+MultiThreading:
+*it is a thread which executes multiple number of process.
+MultiTasking:
+*used to execute multiple process in API.
+--------------------------------------------------------------------------
+Thread safe:
+*vector
+*HashTable
+---------------------------------------------------------------------------
+2 ways to create a thread in java:
+1)Thread class to extend.
+2)Runnable interface to implement.
+---------------------------------------------------------------------------
+Methods:
+1)start
+2)run
+3)sleep(ms)
+4)join
+5)isalive
+6)interrupted
+7)setpriority(priority no)
+------------------------------------------------------------------------------
+Stages of thread:
+1)new
+2)runnable-ready to run but waiting for cpu time
+3)running-run
+4)blocked or waiting
+5)terminated-incomplety solved or completely executed
+-----------------------------------------------------------------------------
+TreeSet,Queue and TreeMap does not allow null values
