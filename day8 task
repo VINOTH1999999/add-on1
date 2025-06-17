@@ -1,1 +1,53 @@
 
+mysql> create database kgcas;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> create table student_profile(
+    -> regno varchar(10),
+    -> name varchar(15),
+    -> date_of_birth date,
+    -> department varchar(50));
+Query OK, 0 rows affected (0.04 sec)
+mysql> desc student_profile;
++---------------+-------------+------+-----+---------+-------+
+| Field         | Type        | Null | Key | Default | Extra |
++---------------+-------------+------+-----+---------+-------+
+| regno         | varchar(10) | YES  |     | NULL    |       |
+| name          | varchar(15) | YES  |     | NULL    |       |
+| date_of_birth | date        | YES  |     | NULL    |       |
+| department    | varchar(50) | YES  |     | NULL    |       |
++---------------+-------------+------+-----+---------+-------+
+4 rows in set (0.05 sec)
+mysql> insert into student_profile values('2326jb25','Nikash','2006-05-17','Information Technology'),('2326jb01','Abhinav','2005-11-16','Information Technology'),('2326jb49','Subathran','2006-05-26','Information Technology'),('2326jb38','Sanjay','2006-04-05','Information Technology'),('2326jb30','PrabuKumar','2006-02-23','Information Technology');
+Query OK, 5 rows affected (0.01 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+mysql> select * from student_profile;
++----------+------------+---------------+------------------------+
+| regno    | name       | date_of_birth | department             |
++----------+------------+---------------+------------------------+
+| 2326jb25 | Nikash     | 2006-05-17    | Information Technology |
+| 2326jb01 | Abhinav    | 2005-11-16    | Information Technology |
+| 2326jb49 | Subathran  | 2006-05-26    | Information Technology |
+| 2326jb38 | Sanjay     | 2006-04-05    | Information Technology |
+| 2326jb30 | PrabuKumar | 2006-02-23    | Information Technology |
++----------+------------+---------------+------------------------+
+5 rows in set (0.00 sec)
+
+mysql> create table marks(
+    -> regno varchar(10),
+    -> mark1 int,
+    -> mark2 int,
+    -> mark3 int);
+Query OK, 0 rows affected (0.08 sec)
+mysql> desc marks;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| regno | varchar(10) | YES  |     | NULL    |       |
+| mark1 | int         | YES  |     | NULL    |       |
+| mark2 | int         | YES  |     | NULL    |       |
+| mark3 | int         | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> Terminal close -- exit!
