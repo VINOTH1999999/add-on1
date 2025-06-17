@@ -1,0 +1,204 @@
+DAY 3
+
+Primitive data type(numbers -int,short,byte,float) -used for memory allocation.Predefined datatypes
+Non-Primitive data type -Strings,Objects,Arrays,Classes
+Class name should be in CAPITAL 
+-----------------------------------------------
+Recap of day1:
+Control flow statements 
+1)Conditional statements    
+2)Looping statements
+3)Jump statements 
+-------------------------------------
+String -immutable
+Methods -.charAt(),.length(),.spilt(),toUpperCase(),.toLowerCase(),.concat()
+These are inbuilt functions
+-----------------------------------------------------------------------------------------------
+New Website-stackoverflow
+Errors:
+cannot find symbol-the function cannot be find in the method
+---------------------------------------------------------------------------------
+String-immutable(cannot be change using any methods)
+StringBuffer-mutable(can be change using inbuilt methods)
+StringBuffer to String - .toString()
+Index - Position of a single character starting with 0
+-----------------------------------------------------------------------
+using charAt()
+
+class Main {
+    public static void main(String[] args) {
+        String name="Nikash";
+       for(int i=0;i<name.length();i++)
+       {
+           System.out.println(name.charAt(i));
+       }
+    }
+
+Output:
+N
+i
+k
+a
+s
+h
+------------------------------------------------------------------------------
+Reverse
+
+class Main {
+    public static void main(String[] args) {
+        String name="Nikash";
+       for(int i=5;i>=0;i--)
+       {
+           System.out.println(name.charAt(i));
+       }
+    }
+}
+
+Output:
+h
+s
+a
+k
+i
+N
+----------------------------------------------------------------------
+Seperate vowels using scanner:
+import java.util.Scanner;
+class Main {
+    public static void main(String[] args) {
+         System.out.println("Enter the String:");
+       Scanner in=new Scanner(System.in);
+       String name=in.nextLine();
+         int vow=0;
+         int conso=0;
+       for(int i=0;i<name.length();i++)
+       {
+           char ch=name.charAt(i);
+          
+          if(ch=='a'|| ch=='e'||ch=='i'||ch=='o'||ch=='u'||ch=='A'|| ch=='E'||ch=='I'||ch=='O'||ch=='U')
+          {
+              vow++;
+            
+          }
+          else if(ch>='a' && ch<='z'||ch>='A' && ch<='Z')
+          {
+              conso++;
+          }
+       }
+       System.out.println("Number of vowels: "+vow);
+       System.out.println("Number of cons: "+conso);
+    }
+}
+------------------------------------------------------------------------------------
+Seperate vowels:
+class Main {
+    public static void main(String[] args) {
+        String name="Nikash";
+         int vow=0;
+         int conso=0;
+       for(int i=0;i<name.length();i++)
+       {
+           char ch=name.charAt(i);
+          
+          if(ch=='a'|| ch=='e'||ch=='i'||ch=='o'||ch=='u'&&ch=='A'|| ch=='E'||ch=='I'||ch=='O'||ch=='U')
+          {
+              vow++;
+            
+          }
+          else if(ch>='a' && ch<='z'||ch>='A' && ch<='Z')
+          {
+              conso++;
+          }
+       }
+       System.out.println("Number of vowels: "+vow);
+       System.out.println("Number of cons: "+conso);
+    }
+}
+
+Output:
+Number of vowels: 2
+Number of cons: 4
+----------------------------------------------------------------------------------
+Seperate numbers
+
+class Main {
+    public static void main(String[] args) {
+        String name="sanjith21";
+        name=name.toLowerCase();
+         int vow=0;
+         int conso=0;
+         int num=0;
+       for(int i=0;i<name.length();i++)
+       {
+           char ch=name.charAt(i);
+          
+          if(ch=='a'|| ch=='e'||ch=='i'||ch=='o'||ch=='u')
+          {
+              vow++;
+            
+          }
+          else if(ch>='a' && ch<='z')
+          {
+              conso++;
+          }
+           else if(num>=0 && num<=9)
+          {
+              num++;
+          }
+       }
+       System.out.println("Number of vowels: "+vow);
+       System.out.println("Number of cons: "+conso);
+        System.out.println("Number of Num: "+num);
+    }
+}
+
+Output:
+Number of vowels: 2
+Number of cons: 4
+Number of Num: 2
+-----------------------------------------------------------------------------
+Seperate vowels numbers symbols
+
+class Main {
+    public static void main(String[] args) {
+        String name="sanjith21#$@";
+        name=name.toLowerCase();
+         int vow=0;
+         int conso=0;
+         int num=0;
+         int sp=0;
+       for(int i=0;i<name.length();i++)
+       {
+           char ch=name.charAt(i);
+          
+          if(ch=='a'|| ch=='e'||ch=='i'||ch=='o'||ch=='u')
+          {
+              vow++;
+            
+          }
+          else if(ch>='a' && ch<='z')
+          {
+              conso++;
+          }
+           else if(ch>='0' && ch<='9')
+          {
+              num++;
+          }
+          else if(ch=='!'||ch=='@'||ch=='#'||ch=='$'||ch=='%'||ch=='^'||ch=='&'||ch=='*')
+          {
+               sp++;
+              
+          }
+       }
+       System.out.println("Number of vowels: "+vow);
+       System.out.println("Number of cons: "+conso);
+       System.out.println("Number of Num: "+num);
+       System.out.println("Rest are Symbols:"+sp);
+    }
+}
+
+Output:
+Number of vowels: 2
+Number of cons: 4
+Number of Num: 2
+Rest are Symbols:3
