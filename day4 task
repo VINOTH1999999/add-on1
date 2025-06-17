@@ -1,0 +1,206 @@
+import java.util.Scanner;
+class Person {
+    String name;
+    int age;
+    void getDetails(Scanner sc)
+    {
+        System.out.print("Enter name: ");
+        name = sc.nextLine();
+        System.out.print("Enter age: ");
+        age = sc.nextInt();
+    }
+
+    void showDetails()
+    {
+        System.out.println("Name: " + name);
+        System.out.println("Age: " + age);
+    }
+}
+
+
+class Employee extends Person {
+    double basicSalary;
+    double hra;
+    double da;
+
+    void setSalary(Scanner sc) {
+        System.out.print("Enter basic salary: ");
+        basicSalary = sc.nextDouble();
+
+        hra = 0.2 * basicSalary;
+        da = 0.1 * basicSalary;
+    }
+
+    double calculateSalary() {
+        return basicSalary + hra + da;
+    }
+
+    void displaySalary() {
+        System.out.println("Total Salary: ₹" + calculateSalary());
+    }
+}
+
+public class SalaryDemo {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        Employee emp = new Employee();
+        emp.getDetails(sc);
+        emp.setSalary(sc);
+        System.out.println("\nEmployee Details:");
+        emp.showDetails();
+        emp.displaySalary();
+
+        sc.close();
+    }
+}
+
+OUTPUT:
+Enter name: sanjith
+Enter age: 20
+Enter basic salary: 1200001
+
+Employee Details:
+Name: sanjith
+Age: 20
+Total Salary: ₹1560001.3
+-------------------------------------------------------------
+import java.util.Scanner;
+
+class Student {
+    String name;
+    int rollNo;
+    int mark1, mark2, mark3;
+
+
+    void getDetails() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter student name: ");
+        name = sc.nextLine();
+
+        System.out.print("Enter roll number: ");
+        rollNo = sc.nextInt();
+
+        System.out.print("Enter mark 1: ");
+        mark1 = sc.nextInt();
+
+        System.out.print("Enter mark 2: ");
+        mark2 = sc.nextInt();
+
+        System.out.print("Enter mark 3: ");
+        mark3 = sc.nextInt();
+    }
+
+   
+    void displayResult() {
+        int total = mark1 + mark2 + mark3;
+        float average = total / 3f;
+
+        System.out.println("\n--- Student Result ---");
+        System.out.println("Name: " + name);
+        System.out.println("Roll No: " + rollNo);
+        System.out.println("Marks: " + mark1 + ", " + mark2 + ", " + mark3);
+        System.out.println("Total: " + total);
+        System.out.println("Average: " + average);
+
+        if (average >= 50) {
+            System.out.println("Result: Pass");
+        } else {
+            System.out.println("Result: Fail");
+        }
+    }
+}
+
+public class StudentManagement {
+    public static void main(String[] args) {
+        Student s1 = new Student();
+        s1.getDetails();
+        s1.displayResult();
+    }
+}
+
+Output:
+Enter student name: sanjith
+Enter roll number: 25
+Enter mark 1: 70
+Enter mark 2: 65
+Enter mark 3: 80
+
+--- Student Result ---
+Name: sanjith
+Roll No: 25
+Marks: 70, 65, 80
+Total: 215
+Average: 71.666664
+Result: Pass
+
+--------------------------------------------------------
+Method OverLoading
+class Sum {
+    int multiply(int a, int b) {
+        return a * b;
+    }
+
+    double multiply(double a, double b) {
+        return a * b;
+    }
+
+   
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Sum s1 = new Sum();
+        System.out.println(s1.multiply(2, 3));          
+        System.out.println(s1.multiply(2.5, 3.5));      
+       
+    }
+}
+OUTPUT:
+6
+8.75
+-----------------------------------------------------------
+Using Scanner:
+class Sum {
+    int multiply( int a,int b) {
+        return a * b;
+    }
+
+    double multiply(double a1, double b1) {
+         return a1 * b1;
+     }
+
+   
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Sum s1 = new Sum();
+        
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Enter the Value1:");
+        int a=sc.nextInt();
+        System.out.println("Enter the value2:");  
+        int b=sc.nextInt();
+        System.out.println("The Multiplied Integer Values Are:"  + s1.multiply(a,b)); 
+        System.out.println("Enter the Value1:");
+        double a1=sc.nextDouble();
+        System.out.println("Enter the value2:");  
+        double b1=sc.nextDouble();
+        System.out.println("The Multiplied Double Values Are:"  + s1.multiply(a1,b1));
+     sc.close();
+       
+    }
+}
+OUTPUT:
+Enter the Value1:
+
+2
+Enter the value2:
+2
+The Multiplied Integer Values Are:4
+Enter the Value1:
+3
+Enter the value2:
+3.5
+The Multiplied Double Values Are:10.5
