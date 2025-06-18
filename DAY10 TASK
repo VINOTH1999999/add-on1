@@ -1,0 +1,1525 @@
+mysql> create table students(
+    -> roll_no int,
+    -> student_name varchar(20),
+    -> department varchar(15));
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> desc students;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| roll_no      | int         | YES  |     | NULL    |       |
+| student_name | varchar(20) | YES  |     | NULL    |       |
+| department   | varchar(15) | YES  |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> insert into student_profile values(1,'Nikash','cs'),(2,'abhi','it'),(3,'sathish','bca');
+mysql> insert into students values(1,'Nikash','cs'),(2,'abhi','it'),(3,'sathish','bca');
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from students;
++---------+--------------+------------+
+| roll_no | student_name | department |
++---------+--------------+------------+
+|       1 | Nikash       | cs         |
+|       2 | abhi         | it         |
+|       3 | sathish      | bca        |
++---------+--------------+------------+
+3 rows in set (0.00 sec)
+
+mysql> insert into students values (4,'Suba','biotech'),(5,'Sanjay','Bcom');
+Query OK, 2 rows affected (0.03 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from students;
++---------+--------------+------------+
+| roll_no | student_name | department |
++---------+--------------+------------+
+|       1 | Nikash       | cs         |
+|       2 | abhi         | it         |
+|       3 | sathish      | bca        |
+|       4 | Suba         | biotech    |
+|       5 | Sanjay       | Bcom       |
++---------+--------------+------------+
+5 rows in set (0.00 sec)
+
+mysql> alter table students add column course_fee int;
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from students;
++---------+--------------+------------+------------+
+| roll_no | student_name | department | course_fee |
++---------+--------------+------------+------------+
+|       1 | Nikash       | cs         |       NULL |
+|       2 | abhi         | it         |       NULL |
+|       3 | sathish      | bca        |       NULL |
+|       4 | Suba         | biotech    |       NULL |
+|       5 | Sanjay       | Bcom       |       NULL |
++---------+--------------+------------+------------+
+5 rows in set (0.00 sec)
+
+mysql> update students set course_fee='36500' where rollno='1';
+ERROR 1054 (42S22): Unknown column 'rollno' in 'where clause'
+mysql> update students set course_fee=36500 where rollno=1;
+ERROR 1054 (42S22): Unknown column 'rollno' in 'where clause'
+mysql> update students set course_fee=36500 where roll_no=';
+    '> ';
+ERROR 1292 (22007): Truncated incorrect DOUBLE value: ';
+'
+mysql> update students set course_fee=36500 where roll_no=1;
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> alter table students drop column course_fee;
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> create table course_details(
+    -> dept_id int,
+    -> course_name,
+    -> course_fee;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ',
+course_fee' at line 3
+mysql> create table course_details(
+    -> dept_id int,
+    -> course_name varchar(25),
+    -> course_fee int);
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> select * from course_details;
+Empty set (0.00 sec)
+
+mysql> desc course_details
+    -> ;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| dept_id     | int         | YES  |     | NULL    |       |
+| course_name | varchar(25) | YES  |     | NULL    |       |
+| course_fee  | int         | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> insert into course_detils values(
+    -> 1001,'cs',35500),
+    -> (2005,'it',36000),
+    -> (3008,'bca',35000),
+    -> (5006,'biotech',40000),
+    -> (6057,'bcom',36500));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 6
+mysql> insert into course_detils values(
+    -> 1001,'cs',35500),
+    -> (2005,'it',36000),
+    -> (3008,'bca',35000),
+    -> (5006,'biotech',40000),
+    -> (6057,'bcom',36500);
+ERROR 1146 (42S02): Table 'kgcas.course_detils' doesn't exist
+mysql> insert into course_detils values(
+    -> 1001,'cs',35500),
+    -> (2005,'it',36000),
+    -> (3008,'bca',35000),
+    -> (5006,'biotech',40000),
+    -> (6057,'bcom',36500);
+ERROR 1146 (42S02): Table 'kgcas.course_detils' doesn't exist
+mysql> insert into course_details values(
+    -> 1001,'cs',35500),
+    -> (2005,'it',36000),
+    -> (3008,'bca',35000),
+    -> (5006,'biotech',40000),
+    -> (6057,'bcom',36500);
+Query OK, 5 rows affected (0.04 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select * from course_details;
++---------+-------------+------------+
+| dept_id | course_name | course_fee |
++---------+-------------+------------+
+|    1001 | cs          |      35500 |
+|    2005 | it          |      36000 |
+|    3008 | bca         |      35000 |
+|    5006 | biotech     |      40000 |
+|    6057 | bcom        |      36500 |
++---------+-------------+------------+
+5 rows in set (0.00 sec)
+
+mysql> alter table students drop column department;
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table students add column dept_id int;
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from students;
++---------+--------------+---------+
+| roll_no | student_name | dept_id |
++---------+--------------+---------+
+|       1 | Nikash       |    NULL |
+|       2 | abhi         |    NULL |
+|       3 | sathish      |    NULL |
+|       4 | Suba         |    NULL |
+|       5 | Sanjay       |    NULL |
++---------+--------------+---------+
+5 rows in set (0.00 sec)
+
+mysql> update students set dept_id=1001 where roll_no=1;
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from students;
++---------+--------------+---------+
+| roll_no | student_name | dept_id |
++---------+--------------+---------+
+|       1 | Nikash       |    1001 |
+|       2 | abhi         |    NULL |
+|       3 | sathish      |    NULL |
+|       4 | Suba         |    NULL |
+|       5 | Sanjay       |    NULL |
++---------+--------------+---------+
+5 rows in set (0.00 sec)
+
+mysql> update students set dept_id=2005 where roll_no=2;
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update students set dept_id=3008 where roll_no=3;
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update students set dept_id=5006 where roll_no=4;
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update students set dept_id=6057 where roll_no=5;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from students;
++---------+--------------+---------+
+| roll_no | student_name | dept_id |
++---------+--------------+---------+
+|       1 | Nikash       |    1001 |
+|       2 | abhi         |    2005 |
+|       3 | sathish      |    3008 |
+|       4 | Suba         |    5006 |
+|       5 | Sanjay       |    6057 |
++---------+--------------+---------+
+5 rows in set (0.00 sec)
+
+mysql> alter table students add column Age int;
+Query OK, 0 rows affected (0.08 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> update students set Age=19 where roll_no=1;
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update students set Age=18 where roll_no=2;
+Query OK, 1 row affected (0.05 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update students set Age=19 where roll_no=3;
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update students set Age=18 where roll_no=4;
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update students set Age=20 where roll_no=5;
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from students;
++---------+--------------+---------+------+
+| roll_no | student_name | dept_id | Age  |
++---------+--------------+---------+------+
+|       1 | Nikash       |    1001 |   19 |
+|       2 | abhi         |    2005 |   18 |
+|       3 | sathish      |    3008 |   19 |
+|       4 | Suba         |    5006 |   18 |
+|       5 | Sanjay       |    6057 |   20 |
++---------+--------------+---------+------+
+5 rows in set (0.00 sec)
+
+mysql> exit
+Bye
+
+------------------------------------------------------------------------------------------
+
+C:\Program Files\MySQL\MySQL Server 8.0\bin>mysql -u root -p
+Enter password: *********
+ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: YES)
+
+C:\Program Files\MySQL\MySQL Server 8.0\bin>mysql -u root -p
+Enter password: *********
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 16
+Server version: 8.0.37 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2024, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create database task;
+Query OK, 1 row affected (0.06 sec)
+
+mysql> use task;
+Database changed
+mysql> create table student(
+    -> student_name varchar(25),
+    -> course varchar
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 3
+mysql> create table student(
+    -> student_name varchar(25)),
+    -> (course varchar(20));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ',
+(course varchar(20))' at line 2
+mysql> create table student(
+    -> student_name varchar(25),
+    -> course varchar(20));
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> insert into student values('Nikash','IT'),('Abhinav','CS'),('Subathran','IT'),('Sanjay','CS'),(PrabuKumar','BCA'),('Ganesh','CT'),('Suganth','Bcom'),('Yashwanth','IT'),('Gokul','BCA'),('Rithik','IT'),('Reshma','CT');
+    '> ;
+    '> ;
+    '>  insert into student values('Nikash','IT'),('Abhinav','CS'),('Subathran','IT'),('Sanjay','CS'),('PrabuKumar','BCA'),('Ganesh','CT'),('Suganth','Bcom'),('Yashwanth','IT'),('Gokul','BCA'),('Rithik','IT'),('Reshma','CT');
+    '> ';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '','BCA'),('Ganesh','CT'),('Suganth','Bcom'),('Yashwanth','IT'),('Gokul','BCA'),(' at line 1
+mysql>  insert into student values('Nikash','IT'),('Abhinav','CS'),('Subathran','IT'),('Sanjay','CS'),('PrabuKumar','BCA'),('Ganesh','CT'),('Suganth','Bcom'),('Yashwanth','IT'),('Gokul','BCA'),('Rithik','IT'),('Reshma','CT');
+Query OK, 11 rows affected (0.04 sec)
+Records: 11  Duplicates: 0  Warnings: 0
+
+mysql> select * from student;
++--------------+--------+
+| student_name | course |
++--------------+--------+
+| Nikash       | IT     |
+| Abhinav      | CS     |
+| Subathran    | IT     |
+| Sanjay       | CS     |
+| PrabuKumar   | BCA    |
+| Ganesh       | CT     |
+| Suganth      | Bcom   |
+| Yashwanth    | IT     |
+| Gokul        | BCA    |
+| Rithik       | IT     |
+| Reshma       | CT     |
++--------------+--------+
+11 rows in set (0.00 sec)
+
+mysql> select count(*) from student where course='IT';
++----------+
+| count(*) |
++----------+
+|        4 |
++----------+
+1 row in set (0.01 sec)
+
+mysql> select count(*) from student where course='CS';
++----------+
+| count(*) |
++----------+
+|        2 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select count(*) from student where course='BCA';
++----------+
+| count(*) |
++----------+
+|        2 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select count(*) from student where course='Bcom';
++----------+
+| count(*) |
++----------+
+|        1 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select count(*) from student where course='CT';
++----------+
+| count(*) |
++----------+
+|        2 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> create table payment(
+    -> dept_id int,
+    -> dept_name varchar(20),
+    -> salary int);
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> desc payment
+    -> ;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| dept_id   | int         | YES  |     | NULL    |       |
+| dept_name | varchar(20) | YES  |     | NULL    |       |
+| salary    | int         | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> insert into payment values(2025,'IT',50000),(1001,'CT',40000),(3035,'BCA',45000),(5005,'Bcom',35000),(2002,'CS',55000);
+Query OK, 5 rows affected (0.05 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select * from payment;
++---------+-----------+--------+
+| dept_id | dept_name | salary |
++---------+-----------+--------+
+|    2025 | IT        |  50000 |
+|    1001 | CT        |  40000 |
+|    3035 | BCA       |  45000 |
+|    5005 | Bcom      |  35000 |
+|    2002 | CS        |  55000 |
++---------+-----------+--------+
+5 rows in set (0.00 sec)
+
+mysql> alter student add column dept_id;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'student add column dept_id' at line 1
+mysql> alter student add column dept_id int;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'student add column dept_id int' at line 1
+mysql> alter table student add column dept_id int;
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from student;
++--------------+--------+---------+
+| student_name | course | dept_id |
++--------------+--------+---------+
+| Nikash       | IT     |    NULL |
+| Abhinav      | CS     |    NULL |
+| Subathran    | IT     |    NULL |
+| Sanjay       | CS     |    NULL |
+| PrabuKumar   | BCA    |    NULL |
+| Ganesh       | CT     |    NULL |
+| Suganth      | Bcom   |    NULL |
+| Yashwanth    | IT     |    NULL |
+| Gokul        | BCA    |    NULL |
+| Rithik       | IT     |    NULL |
+| Reshma       | CT     |    NULL |
++--------------+--------+---------+
+11 rows in set (0.00 sec)
+
+mysql> insert into student(dept_id) select dept_id from payment;
+Query OK, 5 rows affected (0.06 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select * from student;
++--------------+--------+---------+
+| student_name | course | dept_id |
++--------------+--------+---------+
+| Nikash       | IT     |    NULL |
+| Abhinav      | CS     |    NULL |
+| Subathran    | IT     |    NULL |
+| Sanjay       | CS     |    NULL |
+| PrabuKumar   | BCA    |    NULL |
+| Ganesh       | CT     |    NULL |
+| Suganth      | Bcom   |    NULL |
+| Yashwanth    | IT     |    NULL |
+| Gokul        | BCA    |    NULL |
+| Rithik       | IT     |    NULL |
+| Reshma       | CT     |    NULL |
+| NULL         | NULL   |    2025 |
+| NULL         | NULL   |    1001 |
+| NULL         | NULL   |    3035 |
+| NULL         | NULL   |    5005 |
+| NULL         | NULL   |    2002 |
++--------------+--------+---------+
+16 rows in set (0.00 sec)
+
+mysql> delete from student where dept_id=2025;
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select * from student;
++--------------+--------+---------+
+| student_name | course | dept_id |
++--------------+--------+---------+
+| Nikash       | IT     |    NULL |
+| Abhinav      | CS     |    NULL |
+| Subathran    | IT     |    NULL |
+| Sanjay       | CS     |    NULL |
+| PrabuKumar   | BCA    |    NULL |
+| Ganesh       | CT     |    NULL |
+| Suganth      | Bcom   |    NULL |
+| Yashwanth    | IT     |    NULL |
+| Gokul        | BCA    |    NULL |
+| Rithik       | IT     |    NULL |
+| Reshma       | CT     |    NULL |
+| NULL         | NULL   |    1001 |
+| NULL         | NULL   |    3035 |
+| NULL         | NULL   |    5005 |
+| NULL         | NULL   |    2002 |
++--------------+--------+---------+
+15 rows in set (0.00 sec)
+
+mysql> delete from student where dept_id=(1001,3035,5005,2002);
+ERROR 1241 (21000): Operand should contain 1 column(s)
+mysql> delete from student where dept_id=1001,3035,5005,2002;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ',3035,5005,2002' at line 1
+mysql> delete from student where dept_id=1001;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> delete from student where dept_id(1001,3035,5005,2002);
+ERROR 1305 (42000): FUNCTION task.dept_id does not exist
+mysql> select * from student;
++--------------+--------+---------+
+| student_name | course | dept_id |
++--------------+--------+---------+
+| Nikash       | IT     |    NULL |
+| Abhinav      | CS     |    NULL |
+| Subathran    | IT     |    NULL |
+| Sanjay       | CS     |    NULL |
+| PrabuKumar   | BCA    |    NULL |
+| Ganesh       | CT     |    NULL |
+| Suganth      | Bcom   |    NULL |
+| Yashwanth    | IT     |    NULL |
+| Gokul        | BCA    |    NULL |
+| Rithik       | IT     |    NULL |
+| Reshma       | CT     |    NULL |
+| NULL         | NULL   |    3035 |
+| NULL         | NULL   |    5005 |
+| NULL         | NULL   |    2002 |
++--------------+--------+---------+
+14 rows in set (0.00 sec)
+
+mysql> delete from student where dept_id in(1001,3035,5005,2002);
+Query OK, 3 rows affected (0.03 sec)
+
+mysql> select * from student;
++--------------+--------+---------+
+| student_name | course | dept_id |
++--------------+--------+---------+
+| Nikash       | IT     |    NULL |
+| Abhinav      | CS     |    NULL |
+| Subathran    | IT     |    NULL |
+| Sanjay       | CS     |    NULL |
+| PrabuKumar   | BCA    |    NULL |
+| Ganesh       | CT     |    NULL |
+| Suganth      | Bcom   |    NULL |
+| Yashwanth    | IT     |    NULL |
+| Gokul        | BCA    |    NULL |
+| Rithik       | IT     |    NULL |
+| Reshma       | CT     |    NULL |
++--------------+--------+---------+
+11 rows in set (0.00 sec)
+
+mysql> update student set dept_id=2025 where course='IT';
+Query OK, 4 rows affected (0.04 sec)
+Rows matched: 4  Changed: 4  Warnings: 0
+
+mysql> update student set dept_id=1001 where course='CT';
+Query OK, 2 rows affected (0.05 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> update student set dept_id=3035 where course='BCA';
+Query OK, 2 rows affected (0.05 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> update student set dept_id=2002 where course='CS';
+Query OK, 2 rows affected (0.04 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> update student set dept_id=5005 where course='Bcom';
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from student;
++--------------+--------+---------+
+| student_name | course | dept_id |
++--------------+--------+---------+
+| Nikash       | IT     |    2025 |
+| Abhinav      | CS     |    2002 |
+| Subathran    | IT     |    2025 |
+| Sanjay       | CS     |    2002 |
+| PrabuKumar   | BCA    |    3035 |
+| Ganesh       | CT     |    1001 |
+| Suganth      | Bcom   |    5005 |
+| Yashwanth    | IT     |    2025 |
+| Gokul        | BCA    |    3035 |
+| Rithik       | IT     |    2025 |
+| Reshma       | CT     |    1001 |
++--------------+--------+---------+
+11 rows in set (0.00 sec)
+
+mysql> select avg(salary) from payment where dept_name='IT';
++-------------+
+| avg(salary) |
++-------------+
+|  50000.0000 |
++-------------+
+1 row in set (0.03 sec)
+
+mysql> alter table student add column reg_no int first;
+Query OK, 0 rows affected (0.07 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from student;
++--------+--------------+--------+---------+
+| reg_no | student_name | course | dept_id |
++--------+--------------+--------+---------+
+|   NULL | Nikash       | IT     |    2025 |
+|   NULL | Abhinav      | CS     |    2002 |
+|   NULL | Subathran    | IT     |    2025 |
+|   NULL | Sanjay       | CS     |    2002 |
+|   NULL | PrabuKumar   | BCA    |    3035 |
+|   NULL | Ganesh       | CT     |    1001 |
+|   NULL | Suganth      | Bcom   |    5005 |
+|   NULL | Yashwanth    | IT     |    2025 |
+|   NULL | Gokul        | BCA    |    3035 |
+|   NULL | Rithik       | IT     |    2025 |
+|   NULL | Reshma       | CT     |    1001 |
++--------+--------------+--------+---------+
+11 rows in set (0.00 sec)
+
+mysql> update student set reg_no=1 where student_name='Nikash';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update student set reg_no=2 where student_name='Abhinav';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update student set reg_no=2 where student_name='Subathran';
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update student set reg_no=3 where student_name='Subathran';
+Query OK, 1 row affected (0.05 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update student set reg_no=4 where student_name='Sanjay';
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update student set reg_no=5 where student_name='PrabuKumar';
+Query OK, 1 row affected (0.05 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update student set reg_no=6 where student_name='Ganesh';
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update student set reg_no=7 where student_name='Suganth';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update student set reg_no=8 where student_name='Yashwant';
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 0  Changed: 0  Warnings: 0
+
+mysql> update student set reg_no=8 where student_name='Yashwanth';
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update student set reg_no=9 where student_name='Gokul';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update student set reg_no=10 where student_name='Rithik';
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update student set reg_no=11 where student_name='Reshma';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from student;
++--------+--------------+--------+---------+
+| reg_no | student_name | course | dept_id |
++--------+--------------+--------+---------+
+|      1 | Nikash       | IT     |    2025 |
+|      2 | Abhinav      | CS     |    2002 |
+|      3 | Subathran    | IT     |    2025 |
+|      4 | Sanjay       | CS     |    2002 |
+|      5 | PrabuKumar   | BCA    |    3035 |
+|      6 | Ganesh       | CT     |    1001 |
+|      7 | Suganth      | Bcom   |    5005 |
+|      8 | Yashwanth    | IT     |    2025 |
+|      9 | Gokul        | BCA    |    3035 |
+|     10 | Rithik       | IT     |    2025 |
+|     11 | Reshma       | CT     |    1001 |
++--------+--------------+--------+---------+
+11 rows in set (0.00 sec)
+
+mysql> alter table payment drop column salary;
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from payment;
++---------+-----------+
+| dept_id | dept_name |
++---------+-----------+
+|    2025 | IT        |
+|    1001 | CT        |
+|    3035 | BCA       |
+|    5005 | Bcom      |
+|    2002 | CS        |
++---------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> alter table student add column salary int;
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| reg_no       | int         | YES  |     | NULL    |       |
+| student_name | varchar(25) | YES  |     | NULL    |       |
+| course       | varchar(20) | YES  |     | NULL    |       |
+| dept_id      | int         | YES  |     | NULL    |       |
+| salary       | int         | YES  |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> update student set salary=50000 where reg_no=1;
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from student;
++--------+--------------+--------+---------+--------+
+| reg_no | student_name | course | dept_id | salary |
++--------+--------------+--------+---------+--------+
+|      1 | Nikash       | IT     |    2025 |  50000 |
+|      2 | Abhinav      | CS     |    2002 |   NULL |
+|      3 | Subathran    | IT     |    2025 |   NULL |
+|      4 | Sanjay       | CS     |    2002 |   NULL |
+|      5 | PrabuKumar   | BCA    |    3035 |   NULL |
+|      6 | Ganesh       | CT     |    1001 |   NULL |
+|      7 | Suganth      | Bcom   |    5005 |   NULL |
+|      8 | Yashwanth    | IT     |    2025 |   NULL |
+|      9 | Gokul        | BCA    |    3035 |   NULL |
+|     10 | Rithik       | IT     |    2025 |   NULL |
+|     11 | Reshma       | CT     |    1001 |   NULL |
++--------+--------------+--------+---------+--------+
+11 rows in set (0.00 sec)
+
+mysql> update student set salary=40000 where reg_no=2;
+Query OK, 1 row affected (0.05 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update student set salary=45000 where reg_no=3;
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update student set salary=55000 where reg_no=4;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update student set salary=56000 where reg_no=5;
+Query OK, 1 row affected (0.05 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update student set salary=57000 where reg_no=6;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update student set salary=60000 where reg_no=7;
+Query OK, 1 row affected (0.05 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update student set salary=65000 where reg_no=8;
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update student set salary=55000 where reg_no=9;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update student set salary=45000 where reg_no=10;
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update student set salary=52000 where reg_no=11;
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from student;
++--------+--------------+--------+---------+--------+
+| reg_no | student_name | course | dept_id | salary |
++--------+--------------+--------+---------+--------+
+|      1 | Nikash       | IT     |    2025 |  50000 |
+|      2 | Abhinav      | CS     |    2002 |  40000 |
+|      3 | Subathran    | IT     |    2025 |  45000 |
+|      4 | Sanjay       | CS     |    2002 |  55000 |
+|      5 | PrabuKumar   | BCA    |    3035 |  56000 |
+|      6 | Ganesh       | CT     |    1001 |  57000 |
+|      7 | Suganth      | Bcom   |    5005 |  60000 |
+|      8 | Yashwanth    | IT     |    2025 |  65000 |
+|      9 | Gokul        | BCA    |    3035 |  55000 |
+|     10 | Rithik       | IT     |    2025 |  45000 |
+|     11 | Reshma       | CT     |    1001 |  52000 |
++--------+--------------+--------+---------+--------+
+11 rows in set (0.00 sec)
+
+mysql> select avg(salary) from student;
++-------------+
+| avg(salary) |
++-------------+
+|  52727.2727 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select avg(salary) from student where course='IT';
++-------------+
+| avg(salary) |
++-------------+
+|  51250.0000 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select avg(salary) from student where course='CT';
++-------------+
+| avg(salary) |
++-------------+
+|  54500.0000 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select avg(salary) from student where course='BCA';
++-------------+
+| avg(salary) |
++-------------+
+|  55500.0000 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select avg(salary) from student where course='Bcom';
++-------------+
+| avg(salary) |
++-------------+
+|  60000.0000 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select avg(salary) from student where course='CS';
++-------------+
+| avg(salary) |
++-------------+
+|  47500.0000 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select course,avg(salary) from student group by course ;
++--------+-------------+
+| course | avg(salary) |
++--------+-------------+
+| IT     |  51250.0000 |
+| CS     |  47500.0000 |
+| BCA    |  55500.0000 |
+| CT     |  54500.0000 |
+| Bcom   |  60000.0000 |
++--------+-------------+
+5 rows in set (0.04 sec)
+
+mysql> select course,max(salary) from student group by course ;
++--------+-------------+
+| course | max(salary) |
++--------+-------------+
+| IT     |       65000 |
+| CS     |       55000 |
+| BCA    |       56000 |
+| CT     |       57000 |
+| Bcom   |       60000 |
++--------+-------------+
+5 rows in set (0.03 sec)
+
+mysql> select course,min(salary) from student group by course ;
++--------+-------------+
+| course | min(salary) |
++--------+-------------+
+| IT     |       45000 |
+| CS     |       40000 |
+| BCA    |       55000 |
+| CT     |       52000 |
+| Bcom   |       60000 |
++--------+-------------+
+5 rows in set (0.00 sec)
+-------------------------------------------------------------------------------------------------------------
+
+mysql> create table payment(
+    -> dept_id int,
+    -> dept_name varchar(20),
+    -> salary int);
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> desc payment
+    -> ;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| dept_id   | int         | YES  |     | NULL    |       |
+| dept_name | varchar(20) | YES  |     | NULL    |       |
+| salary    | int         | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> insert into payment values(2025,'IT',50000),(1001,'CT',40000),(3035,'BCA',45000),(5005,'Bcom',35000),(2002,'CS',55000);
+Query OK, 5 rows affected (0.05 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select * from payment;
++---------+-----------+--------+
+| dept_id | dept_name | salary |
++---------+-----------+--------+
+|    2025 | IT        |  50000 |
+|    1001 | CT        |  40000 |
+|    3035 | BCA       |  45000 |
+|    5005 | Bcom      |  35000 |
+|    2002 | CS        |  55000 |
++---------+-----------+--------+
+5 rows in set (0.00 sec)
+
+mysql> alter student add column dept_id;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'student add column dept_id' at line 1
+mysql> alter student add column dept_id int;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'student add column dept_id int' at line 1
+mysql> alter table student add column dept_id int;
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from student;
++--------------+--------+---------+
+| student_name | course | dept_id |
++--------------+--------+---------+
+| Nikash       | IT     |    NULL |
+| Abhinav      | CS     |    NULL |
+| Subathran    | IT     |    NULL |
+| Sanjay       | CS     |    NULL |
+| PrabuKumar   | BCA    |    NULL |
+| Ganesh       | CT     |    NULL |
+| Suganth      | Bcom   |    NULL |
+| Yashwanth    | IT     |    NULL |
+| Gokul        | BCA    |    NULL |
+| Rithik       | IT     |    NULL |
+| Reshma       | CT     |    NULL |
++--------------+--------+---------+
+11 rows in set (0.00 sec)
+
+mysql> insert into student(dept_id) select dept_id from payment;
+Query OK, 5 rows affected (0.06 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select * from student;
++--------------+--------+---------+
+| student_name | course | dept_id |
++--------------+--------+---------+
+| Nikash       | IT     |    NULL |
+| Abhinav      | CS     |    NULL |
+| Subathran    | IT     |    NULL |
+| Sanjay       | CS     |    NULL |
+| PrabuKumar   | BCA    |    NULL |
+| Ganesh       | CT     |    NULL |
+| Suganth      | Bcom   |    NULL |
+| Yashwanth    | IT     |    NULL |
+| Gokul        | BCA    |    NULL |
+| Rithik       | IT     |    NULL |
+| Reshma       | CT     |    NULL |
+| NULL         | NULL   |    2025 |
+| NULL         | NULL   |    1001 |
+| NULL         | NULL   |    3035 |
+| NULL         | NULL   |    5005 |
+| NULL         | NULL   |    2002 |
++--------------+--------+---------+
+16 rows in set (0.00 sec)
+
+mysql> delete from student where dept_id=2025;
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select * from student;
++--------------+--------+---------+
+| student_name | course | dept_id |
++--------------+--------+---------+
+| Nikash       | IT     |    NULL |
+| Abhinav      | CS     |    NULL |
+| Subathran    | IT     |    NULL |
+| Sanjay       | CS     |    NULL |
+| PrabuKumar   | BCA    |    NULL |
+| Ganesh       | CT     |    NULL |
+| Suganth      | Bcom   |    NULL |
+| Yashwanth    | IT     |    NULL |
+| Gokul        | BCA    |    NULL |
+| Rithik       | IT     |    NULL |
+| Reshma       | CT     |    NULL |
+| NULL         | NULL   |    1001 |
+| NULL         | NULL   |    3035 |
+| NULL         | NULL   |    5005 |
+| NULL         | NULL   |    2002 |
++--------------+--------+---------+
+15 rows in set (0.00 sec)
+
+mysql> delete from student where dept_id=(1001,3035,5005,2002);
+ERROR 1241 (21000): Operand should contain 1 column(s)
+mysql> delete from student where dept_id=1001,3035,5005,2002;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ',3035,5005,2002' at line 1
+mysql> delete from student where dept_id=1001;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> delete from student where dept_id(1001,3035,5005,2002);
+ERROR 1305 (42000): FUNCTION task.dept_id does not exist
+mysql> select * from student;
++--------------+--------+---------+
+| student_name | course | dept_id |
++--------------+--------+---------+
+| Nikash       | IT     |    NULL |
+| Abhinav      | CS     |    NULL |
+| Subathran    | IT     |    NULL |
+| Sanjay       | CS     |    NULL |
+| PrabuKumar   | BCA    |    NULL |
+| Ganesh       | CT     |    NULL |
+| Suganth      | Bcom   |    NULL |
+| Yashwanth    | IT     |    NULL |
+| Gokul        | BCA    |    NULL |
+| Rithik       | IT     |    NULL |
+| Reshma       | CT     |    NULL |
+| NULL         | NULL   |    3035 |
+| NULL         | NULL   |    5005 |
+| NULL         | NULL   |    2002 |
++--------------+--------+---------+
+14 rows in set (0.00 sec)
+
+mysql> delete from student where dept_id in(1001,3035,5005,2002);
+Query OK, 3 rows affected (0.03 sec)
+
+mysql> select * from student;
++--------------+--------+---------+
+| student_name | course | dept_id |
++--------------+--------+---------+
+| Nikash       | IT     |    NULL |
+| Abhinav      | CS     |    NULL |
+| Subathran    | IT     |    NULL |
+| Sanjay       | CS     |    NULL |
+| PrabuKumar   | BCA    |    NULL |
+| Ganesh       | CT     |    NULL |
+| Suganth      | Bcom   |    NULL |
+| Yashwanth    | IT     |    NULL |
+| Gokul        | BCA    |    NULL |
+| Rithik       | IT     |    NULL |
+| Reshma       | CT     |    NULL |
++--------------+--------+---------+
+11 rows in set (0.00 sec)
+
+mysql> update student set dept_id=2025 where course='IT';
+Query OK, 4 rows affected (0.04 sec)
+Rows matched: 4  Changed: 4  Warnings: 0
+
+mysql> update student set dept_id=1001 where course='CT';
+Query OK, 2 rows affected (0.05 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> update student set dept_id=3035 where course='BCA';
+Query OK, 2 rows affected (0.05 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> update student set dept_id=2002 where course='CS';
+Query OK, 2 rows affected (0.04 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> update student set dept_id=5005 where course='Bcom';
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from student;
++--------------+--------+---------+
+| student_name | course | dept_id |
++--------------+--------+---------+
+| Nikash       | IT     |    2025 |
+| Abhinav      | CS     |    2002 |
+| Subathran    | IT     |    2025 |
+| Sanjay       | CS     |    2002 |
+| PrabuKumar   | BCA    |    3035 |
+| Ganesh       | CT     |    1001 |
+| Suganth      | Bcom   |    5005 |
+| Yashwanth    | IT     |    2025 |
+| Gokul        | BCA    |    3035 |
+| Rithik       | IT     |    2025 |
+| Reshma       | CT     |    1001 |
++--------------+--------+---------+
+11 rows in set (0.00 sec)
+
+mysql> select avg(salary) from payment where dept_name='IT';
++-------------+
+| avg(salary) |
++-------------+
+|  50000.0000 |
++-------------+
+1 row in set (0.03 sec)
+
+mysql> alter table student add column reg_no int first;
+Query OK, 0 rows affected (0.07 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from student;
++--------+--------------+--------+---------+
+| reg_no | student_name | course | dept_id |
++--------+--------------+--------+---------+
+|   NULL | Nikash       | IT     |    2025 |
+|   NULL | Abhinav      | CS     |    2002 |
+|   NULL | Subathran    | IT     |    2025 |
+|   NULL | Sanjay       | CS     |    2002 |
+|   NULL | PrabuKumar   | BCA    |    3035 |
+|   NULL | Ganesh       | CT     |    1001 |
+|   NULL | Suganth      | Bcom   |    5005 |
+|   NULL | Yashwanth    | IT     |    2025 |
+|   NULL | Gokul        | BCA    |    3035 |
+|   NULL | Rithik       | IT     |    2025 |
+|   NULL | Reshma       | CT     |    1001 |
++--------+--------------+--------+---------+
+11 rows in set (0.00 sec)
+
+mysql> update student set reg_no=1 where student_name='Nikash';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update student set reg_no=2 where student_name='Abhinav';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update student set reg_no=2 where student_name='Subathran';
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update student set reg_no=3 where student_name='Subathran';
+Query OK, 1 row affected (0.05 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update student set reg_no=4 where student_name='Sanjay';
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update student set reg_no=5 where student_name='PrabuKumar';
+Query OK, 1 row affected (0.05 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update student set reg_no=6 where student_name='Ganesh';
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update student set reg_no=7 where student_name='Suganth';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update student set reg_no=8 where student_name='Yashwant';
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 0  Changed: 0  Warnings: 0
+
+mysql> update student set reg_no=8 where student_name='Yashwanth';
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update student set reg_no=9 where student_name='Gokul';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update student set reg_no=10 where student_name='Rithik';
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update student set reg_no=11 where student_name='Reshma';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from student;
++--------+--------------+--------+---------+
+| reg_no | student_name | course | dept_id |
++--------+--------------+--------+---------+
+|      1 | Nikash       | IT     |    2025 |
+|      2 | Abhinav      | CS     |    2002 |
+|      3 | Subathran    | IT     |    2025 |
+|      4 | Sanjay       | CS     |    2002 |
+|      5 | PrabuKumar   | BCA    |    3035 |
+|      6 | Ganesh       | CT     |    1001 |
+|      7 | Suganth      | Bcom   |    5005 |
+|      8 | Yashwanth    | IT     |    2025 |
+|      9 | Gokul        | BCA    |    3035 |
+|     10 | Rithik       | IT     |    2025 |
+|     11 | Reshma       | CT     |    1001 |
++--------+--------------+--------+---------+
+11 rows in set (0.00 sec)
+
+mysql> alter table payment drop column salary;
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from payment;
++---------+-----------+
+| dept_id | dept_name |
++---------+-----------+
+|    2025 | IT        |
+|    1001 | CT        |
+|    3035 | BCA       |
+|    5005 | Bcom      |
+|    2002 | CS        |
++---------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> alter table student add column salary int;
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| reg_no       | int         | YES  |     | NULL    |       |
+| student_name | varchar(25) | YES  |     | NULL    |       |
+| course       | varchar(20) | YES  |     | NULL    |       |
+| dept_id      | int         | YES  |     | NULL    |       |
+| salary       | int         | YES  |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> update student set salary=50000 where reg_no=1;
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from student;
++--------+--------------+--------+---------+--------+
+| reg_no | student_name | course | dept_id | salary |
++--------+--------------+--------+---------+--------+
+|      1 | Nikash       | IT     |    2025 |  50000 |
+|      2 | Abhinav      | CS     |    2002 |   NULL |
+|      3 | Subathran    | IT     |    2025 |   NULL |
+|      4 | Sanjay       | CS     |    2002 |   NULL |
+|      5 | PrabuKumar   | BCA    |    3035 |   NULL |
+|      6 | Ganesh       | CT     |    1001 |   NULL |
+|      7 | Suganth      | Bcom   |    5005 |   NULL |
+|      8 | Yashwanth    | IT     |    2025 |   NULL |
+|      9 | Gokul        | BCA    |    3035 |   NULL |
+|     10 | Rithik       | IT     |    2025 |   NULL |
+|     11 | Reshma       | CT     |    1001 |   NULL |
++--------+--------------+--------+---------+--------+
+11 rows in set (0.00 sec)
+
+mysql> update student set salary=40000 where reg_no=2;
+Query OK, 1 row affected (0.05 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update student set salary=45000 where reg_no=3;
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update student set salary=55000 where reg_no=4;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update student set salary=56000 where reg_no=5;
+Query OK, 1 row affected (0.05 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update student set salary=57000 where reg_no=6;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update student set salary=60000 where reg_no=7;
+Query OK, 1 row affected (0.05 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update student set salary=65000 where reg_no=8;
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update student set salary=55000 where reg_no=9;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update student set salary=45000 where reg_no=10;
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update student set salary=52000 where reg_no=11;
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from student;
++--------+--------------+--------+---------+--------+
+| reg_no | student_name | course | dept_id | salary |
++--------+--------------+--------+---------+--------+
+|      1 | Nikash       | IT     |    2025 |  50000 |
+|      2 | Abhinav      | CS     |    2002 |  40000 |
+|      3 | Subathran    | IT     |    2025 |  45000 |
+|      4 | Sanjay       | CS     |    2002 |  55000 |
+|      5 | PrabuKumar   | BCA    |    3035 |  56000 |
+|      6 | Ganesh       | CT     |    1001 |  57000 |
+|      7 | Suganth      | Bcom   |    5005 |  60000 |
+|      8 | Yashwanth    | IT     |    2025 |  65000 |
+|      9 | Gokul        | BCA    |    3035 |  55000 |
+|     10 | Rithik       | IT     |    2025 |  45000 |
+|     11 | Reshma       | CT     |    1001 |  52000 |
++--------+--------------+--------+---------+--------+
+11 rows in set (0.00 sec)
+
+mysql> select avg(salary) from student;
++-------------+
+| avg(salary) |
++-------------+
+|  52727.2727 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select avg(salary) from student where course='IT';
++-------------+
+| avg(salary) |
++-------------+
+|  51250.0000 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select avg(salary) from student where course='CT';
++-------------+
+| avg(salary) |
++-------------+
+|  54500.0000 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select avg(salary) from student where course='BCA';
++-------------+
+| avg(salary) |
++-------------+
+|  55500.0000 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select avg(salary) from student where course='Bcom';
++-------------+
+| avg(salary) |
++-------------+
+|  60000.0000 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select avg(salary) from student where course='CS';
++-------------+
+| avg(salary) |
++-------------+
+|  47500.0000 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select course,avg(salary) from student group by course ;
++--------+-------------+
+| course | avg(salary) |
++--------+-------------+
+| IT     |  51250.0000 |
+| CS     |  47500.0000 |
+| BCA    |  55500.0000 |
+| CT     |  54500.0000 |
+| Bcom   |  60000.0000 |
++--------+-------------+
+5 rows in set (0.04 sec)
+
+mysql> select course,max(salary) from student group by course ;
++--------+-------------+
+| course | max(salary) |
++--------+-------------+
+| IT     |       65000 |
+| CS     |       55000 |
+| BCA    |       56000 |
+| CT     |       57000 |
+| Bcom   |       60000 |
++--------+-------------+
+5 rows in set (0.03 sec)
+
+mysql> select course,min(salary) from student group by course ;
++--------+-------------+
+| course | min(salary) |
++--------+-------------+
+| IT     |       45000 |
+| CS     |       40000 |
+| BCA    |       55000 |
+| CT     |       52000 |
+| Bcom   |       60000 |
++--------+-------------+
+5 rows in set (0.00 sec)
+
+mysql> savepoint task;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> create table sales(
+    -> sales_id int,
+    -> pro_name varchar(20),
+    -> pro_count int,
+    -> cost_per_unit int,
+    -> total_amt int);
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> select * from sales;
+Empty set (0.00 sec)
+
+mysql> desc sales;
++---------------+-------------+------+-----+---------+-------+
+| Field         | Type        | Null | Key | Default | Extra |
++---------------+-------------+------+-----+---------+-------+
+| sales_id      | int         | YES  |     | NULL    |       |
+| pro_name      | varchar(20) | YES  |     | NULL    |       |
+| pro_count     | int         | YES  |     | NULL    |       |
+| cost_per_unit | int         | YES  |     | NULL    |       |
+| total_amt     | int         | YES  |     | NULL    |       |
++---------------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> insert into sales values(
+    -> 1,'Apple',200,20,4000),
+    -> (2,'Orange',400,
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 3
+mysql> insert into sales values(
+    -> 1,'Apple',200,20;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 2
+mysql> insert into sales sales_id,pro_name,pro_count,cost_per_unit values(
+    -> 1,'Apple',200,20);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'sales_id,pro_name,pro_count,cost_per_unit values(
+1,'Apple',200,20)' at line 1
+mysql> insert into sales (sales_id,pro_name,pro_count,cost_per_unit) values(\
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> insert into sales (sales_id,pro_name,pro_count,cost_per_unit) values(
+    -> 1,'Apple',200,20);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> insert into sales sales_id,pro_name,pro_count,cost_per_unit values(
+    -> (2,'Orange',400,15),
+    -> (3,'Banana',600,15),
+    -> (4,'JackFruit',700,30),
+    -> (5,'Mango',650,10);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'sales_id,pro_name,pro_count,cost_per_unit values(
+(2,'Orange',400,15),
+(3,'Banan' at line 1
+mysql> insert into sales sales_id,pro_name,pro_count,cost_per_unit values(
+    -> 2,'Orange',400,15),
+    -> (3,'Banana',600,15),
+    -> (4,'JackFruit',700,30),
+    -> (5,'Mango',650,10);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'sales_id,pro_name,pro_count,cost_per_unit values(
+2,'Orange',400,15),
+(3,'Banana' at line 1
+mysql> insert into sales (sales_id,pro_name,pro_count,cost_per_unit) values(
+    -> 2,'Orange',400,15),
+    -> (3,'Banana',600,15),
+    -> (4,'JackFruit',700,30),
+    -> (5,'Mango',650,10);
+Query OK, 4 rows affected (0.04 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from sales;
++----------+-----------+-----------+---------------+-----------+
+| sales_id | pro_name  | pro_count | cost_per_unit | total_amt |
++----------+-----------+-----------+---------------+-----------+
+|        1 | Apple     |       200 |            20 |      NULL |
+|        2 | Orange    |       400 |            15 |      NULL |
+|        3 | Banana    |       600 |            15 |      NULL |
+|        4 | JackFruit |       700 |            30 |      NULL |
+|        5 | Mango     |       650 |            10 |      NULL |
++----------+-----------+-----------+---------------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> alter table sales modify total_amt int generated always as (pro_count * cost_per_unit);
+ERROR 3106 (HY000): 'Changing the STORED status' is not supported for generated columns.
+mysql> alter table sales modify total_amt int generated always as (pro_count * cost_per_unit) stored;
+Query OK, 5 rows affected (0.17 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select * from sales;
++----------+-----------+-----------+---------------+-----------+
+| sales_id | pro_name  | pro_count | cost_per_unit | total_amt |
++----------+-----------+-----------+---------------+-----------+
+|        1 | Apple     |       200 |            20 |      4000 |
+|        2 | Orange    |       400 |            15 |      6000 |
+|        3 | Banana    |       600 |            15 |      9000 |
+|        4 | JackFruit |       700 |            30 |     21000 |
+|        5 | Mango     |       650 |            10 |      6500 |
++----------+-----------+-----------+---------------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> insert into sales (sales_id,pro_name,pro_count,cost_per_unit) values(
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> alter table sales add column category varchar(20);
+Query OK, 0 rows affected (0.07 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from sales;
++----------+-----------+-----------+---------------+-----------+----------+
+| sales_id | pro_name  | pro_count | cost_per_unit | total_amt | category |
++----------+-----------+-----------+---------------+-----------+----------+
+|        1 | Apple     |       200 |            20 |      4000 | NULL     |
+|        2 | Orange    |       400 |            15 |      6000 | NULL     |
+|        3 | Banana    |       600 |            15 |      9000 | NULL     |
+|        4 | JackFruit |       700 |            30 |     21000 | NULL     |
+|        5 | Mango     |       650 |            10 |      6500 | NULL     |
++----------+-----------+-----------+---------------+-----------+----------+
+5 rows in set (0.00 sec)
+
+mysql> alter sales set category='fruit';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'sales set category='fruit'' at line 1
+mysql> alter sales set category fruit;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'sales set category fruit' at line 1
+mysql> alter sales set category 'fruit';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'sales set category 'fruit'' at line 1
+mysql> update sales set category='fruit';
+Query OK, 5 rows affected (0.04 sec)
+Rows matched: 5  Changed: 5  Warnings: 0
+
+mysql> insert into sales values(
+    -> 6,'Carrot',200,10;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 2
+mysql> insert into sales (sales_id,pro_name,pro_count,cost_per_unit,category) values(
+    -> 6,'Carrot',200,10,'vegetable'),
+    -> (7,'Cucumber',500,20,'Vegetable'),
+    -> (8,'Wheat',1000,200,'Grocery'),
+    -> (9,'Maida',3000,25,'Grocery'),
+    -> (10,'Laptop',10,50000,'Electronics'),
+    -> (11,'Mobile',50,20000,'Electronics'),
+    -> (12,'PC',5,200000,'Electronics');
+Query OK, 7 rows affected (0.01 sec)
+Records: 7  Duplicates: 0  Warnings: 0
+
+mysql> select * from sales;
++----------+-----------+-----------+---------------+-----------+-------------+
+| sales_id | pro_name  | pro_count | cost_per_unit | total_amt | category    |
++----------+-----------+-----------+---------------+-----------+-------------+
+|        1 | Apple     |       200 |            20 |      4000 | fruit       |
+|        2 | Orange    |       400 |            15 |      6000 | fruit       |
+|        3 | Banana    |       600 |            15 |      9000 | fruit       |
+|        4 | JackFruit |       700 |            30 |     21000 | fruit       |
+|        5 | Mango     |       650 |            10 |      6500 | fruit       |
+|        6 | Carrot    |       200 |            10 |      2000 | vegetable   |
+|        7 | Cucumber  |       500 |            20 |     10000 | Vegetable   |
+|        8 | Wheat     |      1000 |           200 |    200000 | Grocery     |
+|        9 | Maida     |      3000 |            25 |     75000 | Grocery     |
+|       10 | Laptop    |        10 |         50000 |    500000 | Electronics |
+|       11 | Mobile    |        50 |         20000 |   1000000 | Electronics |
+|       12 | PC        |         5 |        200000 |   1000000 | Electronics |
++----------+-----------+-----------+---------------+-----------+-------------+
+12 rows in set (0.00 sec)
+
+mysql> select category,avg(total_amt) from sales group by category;
++-------------+----------------+
+| category    | avg(total_amt) |
++-------------+----------------+
+| fruit       |      9300.0000 |
+| vegetable   |      6000.0000 |
+| Grocery     |    137500.0000 |
+| Electronics |    833333.3333 |
++-------------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> savepoint task;
+Query OK, 0 rows affected (0.00 sec)
