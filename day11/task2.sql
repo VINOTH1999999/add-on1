@@ -1,0 +1,72 @@
+mysql> create database day11;
+Query OK, 1 row affected (0.31 sec)
+
+mysql> CREATE TABLE Students (
+    ->     student_id INT PRIMARY KEY,
+    ->     name VARCHAR(100)
+    -> );
+mysql> CREATE TABLE Marks (
+    ->     mark_id INT PRIMARY KEY,
+    ->     student_id INT,
+    ->     subject VARCHAR(50),
+    ->     marks INT,
+    ->     FOREIGN KEY (student_id) REFERENCES Students(student_id)
+    -> );
+ERROR 1046 (3D000): No database selected
+mysql> use day11;
+Database changed
+mysql> create table stud(
+    ->     student_id INT PRIMARY KEY,
+    ->     name VARCHAR(100));
+Query OK, 0 rows affected (1.13 sec)
+mysql> create table marks(
+    ->     mark_id INT PRIMARY KEY,
+    ->     student_id INT,
+    ->     subject VARCHAR(50),
+    ->     marks INT,
+    ->     FOREIGN KEY (student_id) REFERENCES Stud(student_id));
+Query OK, 0 rows affected (0.82 sec)
+
+mysql> INSERT INTO stud VALUES (1, 'Abhinav'),
+    -> (2, 'anu'), (3, 'nikash');
+Query OK, 3 rows affected (0.15 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> INSERT INTO Marks VALUES
+    -> (101, 1, 'Math', 88),
+    -> (102, 1, 'Science', 92),
+    -> (103, 2, 'Math', 76),
+    -> (104, 2, 'Science', 84),
+    -> (105, 3, 'Math', 91);
+Query OK, 5 rows affected (0.04 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> SELECT stud.student_id, stud.name, Marks.subject, Marks.marks FROM stud JOIN Marks ON stud.student_id = Marks.student_id;
++------------+---------+---------+-------+
+| student_id | name    | subject | marks |
++------------+---------+---------+-------+
+|          1 | Abhinav | Math    |    88 |
+|          1 | Abhinav | Science |    92 |
+|          2 | anu     | Math    |    76 |
+|          2 | anu     | Science |    84 |
+|          3 | nikash  | Math    |    91 |
++------------+---------+---------+-------+
+5 rows in set (0.00 sec)
+// coontinuation of task1 and below code will start from task2
+
+mysql> SELECT name
+    -> FROM stud WHERE student_id = (
+    ->     SELECT student_id
+    ->     FROM Marks
+    ->     GROUP BY student_id
+    ->     ORDER BY SUM(marks) DESC
+    ->     LIMIT 1
+    -> );
++---------+
+| name    |
++---------+
+| Abhinav |
++---------+
+1 row in set (0.06 sec)
+
+mysql>
